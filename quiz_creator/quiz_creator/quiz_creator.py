@@ -1,11 +1,11 @@
-quiz_questions = []
+quiz_questions = []   #I created a list to store the questions and answers
 possible_answers1 = []
 possible_answers2 = []
 possible_answers3 = []
 possible_answers4 = []
 correct_answer = []
 
-while True:
+while True: #While loop, so that the user can enter multiple questions and they can exit after entering the last question they want to enter
     question = input ("Enter your question:")
     quiz_questions.append(question)
 
@@ -29,4 +29,12 @@ while True:
         print ("Thank You!!")
         break
 
+ # This for loop, works to print the quiz questions and answers
+for i in range(len(quiz_questions)):
+    print(f"{i + 1}. {quiz_questions[i]}")
+    print(f"a. {possible_answers1[i]}")
+    print(f"b. {possible_answers2[i]}")
+    print(f"c. {possible_answers3[i]}")
+    print(f"d. {possible_answers4[i]}")
+    print(f"Correct answer: {correct_answer[i]}")
     
