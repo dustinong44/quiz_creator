@@ -6,10 +6,11 @@ possible_answers2 = []
 possible_answers3 = []
 possible_answers4 = []
 correct_answer = []
+question_scores = []
 
 
 version_number = 1
-filename_prefix = "quiz_data_v"
+filename_prefix = "Your Quiz"
 
 
 def get_filename(version):
@@ -23,6 +24,15 @@ while True:  # While loop for entering multiple questions
 
     question = input("Enter your question:")
     quiz_questions.append(question)
+
+    while True:
+        try:
+            score = float(input("Enter the point value for this question:"))
+            question_scores.append(score)
+            break
+        except ValueError:
+            print("Invalid input. Please enter an integer value for the score.")
+
 
     # Validate that answers are not the same/duplicate
     while True:
@@ -50,23 +60,26 @@ while True:  # While loop for entering multiple questions
             print("Correct answer must match one of the provided options. Please try again.")
 
     # Write the question and answers to a file for this version
-    with open(filename, "a") as file:  # Open the file in append mode
+    with open(filename, "a") as file:  
         file.write(f"Question: {question}\n")
+        file.write(f"Possible Score: {score}\n")
         file.write(f"a. {answer1}\n")
         file.write(f"b. {answer2}\n")
         file.write(f"c. {answer3}\n")
         file.write(f"d. {answer4}\n")
         file.write(f"Correct answer: {correct}\n")
-        file.write("\n")  # Add a blank line for readability
+        file.write("\n")  
 
     decision = input("Do you want to enter another question? (yes/no):")
     if decision.lower() != "yes":
         print(f"Quiz version {version_number} has been saved.")
-        # Ask if the user wants to create a new version
+        
+        
+        # ask if the user wants to create another version
         create_new_version = input("Do you want to start a new quiz version? (yes/no):")
         if create_new_version.lower() == "yes":
             version_number += 1  
-            quiz_questions.clear()  # clear list for new input in question an asnwers
+            quiz_questions.clear()  # clears the list for the new input of question and answers
             possible_answers1.clear()
             possible_answers2.clear()
             possible_answers3.clear()
@@ -80,6 +93,7 @@ while True:  # While loop for entering multiple questions
 print("\nFinal Quiz:")
 for i in range(len(quiz_questions)):
     print(f"{i + 1}. {quiz_questions[i]}")
+    print(f"Possible Score:{question_scores[i]}")
     print(f"a. {possible_answers1[i]}")
     print(f"b. {possible_answers2[i]}")
     print(f"c. {possible_answers3[i]}")

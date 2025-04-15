@@ -1,0 +1,16 @@
+Question: What is the capital of the Philippines
+Possible Score: 5
+a. Cebu
+b. MAnila
+c. LAacata
+d. USA
+Correct answer: USA
+
+Question: Who is the Finals MVP for NBA in 2024
+Possible Score: 5
+a. Lebron James
+b. Michael Jordan
+c. Stephen Curry
+d. Jaylen Brown
+Correct answer: Jaylen Brown
+
