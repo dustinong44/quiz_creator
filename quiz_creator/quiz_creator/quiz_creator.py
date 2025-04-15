@@ -9,7 +9,7 @@ while True:  # While loop for entering multiple questions
     question = input("Enter your question:")
     quiz_questions.append(question)
 
-    # Validate that answers are not the same
+    # Checking for answers if not duplicate
     while True:
         answer1 = input("Enter your 1st possible answer:")
         answer2 = input("Enter your 2nd possible answer:")
@@ -21,12 +21,18 @@ while True:  # While loop for entering multiple questions
             possible_answers2.append(answer2)
             possible_answers3.append(answer3)
             possible_answers4.append(answer4)
-            break  # Exit the loop if answers are unique
+            break  
         else:
             print("Answers must be unique. Please try again.")
 
-    correct = input("Enter the correct answer:")
-    correct_answer.append(correct)
+    # Validate the correct answer input
+    while True:
+        correct = input("Enter the correct answer:")
+        if correct in [answer1, answer2, answer3, answer4]:  # Check if correct answer matches provided input possible answers by the user
+            correct_answer.append(correct)
+            break  
+        else:
+            print("Correct answer must match one of the provided options. Please try again.")
 
     decision = input("Do you want to enter another question? (yes/no):")
     if decision.lower() != "yes":
