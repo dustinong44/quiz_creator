@@ -70,13 +70,13 @@ while True:  # While loop for entering multiple questions
         file.write(f"Correct answer: {correct}\n")
         file.write("\n")  
 
-    decision = input("Do you want to enter another question? (yes/no):")
+    decision = input("Do you want to enter another question? Strictly yes/no:")
     if decision.lower() != "yes":
         print(f"Quiz version {version_number} has been saved.")
         
         
         # ask if the user wants to create another version
-        create_new_version = input("Do you want to start a new quiz version? (yes/no):")
+        create_new_version = input("Do you want to start a new quiz version? (do not enter no if still unsure) strictly yes/no:")
         if create_new_version.lower() == "yes":
             version_number += 1  
             quiz_questions.clear()  # clears the list for the new input of question and answers
