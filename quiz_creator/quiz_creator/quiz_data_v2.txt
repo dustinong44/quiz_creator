@@ -1,0 +1,14 @@
+Question: yeah
+a. g
+b. a
+c. i
+d. o
+Correct answer: g
+
+Question: yup
+a. a
+b. b
+c. c
+d. d
+Correct answer: d
+
