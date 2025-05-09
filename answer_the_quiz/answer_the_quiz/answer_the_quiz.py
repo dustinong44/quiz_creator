@@ -22,3 +22,16 @@ def load_quiz(filename):
 quiz_file = "Your Quiz1.txt"  
 quiz_questions = load_quiz(quiz_file)
 print(quiz_questions)  
+
+def get_random_question(quiz_data):
+    if not quiz_data:
+        print("No questions available.")
+        return None
+    return random.choice(quiz_data)
+
+
+selected_question = get_random_question(quiz_questions)
+if selected_question:
+    print(f"Question: {selected_question['question']}")
+    for answer in selected_question["answers"]:
+        print(answer)  
