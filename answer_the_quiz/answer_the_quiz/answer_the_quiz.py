@@ -72,3 +72,16 @@ def check_answer(user_answer, question_data):
 
 is_correct = check_answer(user_response, selected_question)
 
+def run_quiz(quiz_data):
+    score = 0
+    total_questions = len(quiz_data)
+
+    for _ in range(total_questions):
+        question_data = get_random_question(quiz_data)
+        user_answer = ask_question(question_data)
+        if check_answer(user_answer, question_data):
+            score += 1
+
+    print(f"\nQuiz Complete! Your final score: {score}/{total_questions}")
+
+run_quiz(quiz_questions)
