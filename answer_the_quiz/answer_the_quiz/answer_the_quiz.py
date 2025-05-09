@@ -1,5 +1,19 @@
-﻿import random
+﻿import os
+import random
 
+# dito po makikita yung folder ng quiz 
+quiz_directory = r"C:\Users\dustin\Music\quiz_creator\answer_the_quiz\answer_the_quiz"
+filename_prefix = "Your Quiz"
+
+# find the latest quiz file
+def get_latest_quiz_file():
+    existing_files = [f for f in os.listdir(quiz_directory) if f.startswith(filename_prefix) and f.endswith(".txt")]
+    if not existing_files:
+        return None  # No quiz files found
+    latest_file = sorted(existing_files, key=lambda x: int(x.replace(filename_prefix, "").replace(".txt", "")), reverse=True)[0]
+    return os.path.join(quiz_directory, latest_file)  # Return full path of latest quiz file
+
+# load quiz data from file
 def load_quiz(filename):
     quiz_data = []
     try:
@@ -19,13 +33,6 @@ def load_quiz(filename):
         print(f"Error: {filename} not found.")
         return []
 
-def get_random_question(quiz_data):
-    if not quiz_data:
-        print("No questions available.")
-        return None
-    return random.choice(quiz_data)
-
-
 def ask_question(question_data):
     print(f"\nQuestion: {question_data['question']}")
     for answer in question_data["answers"]:
@@ -38,24 +45,13 @@ def ask_question(question_data):
         else:
             print("Invalid input. Please enter a, b, c, or d.")
 
-# load quiz file and select a question
-quiz_file = "Your Quiz1.txt"  
-quiz_questions = load_quiz(quiz_file)
-selected_question = get_random_question(quiz_questions)
-
-if selected_question:  
-    user_response = ask_question(selected_question)
-else:
-    print("Error: No valid question available.")
-
-
 def check_answer(user_answer, question_data):
     correct_text = question_data["correct"]
     correct_letter = None
 
-    
+    # finds the correct letter from (a, b, c, d) by matching the full answer text
     for answer in question_data["answers"]:
-        if correct_text in answer:
+        if correct_text == answer[3:].strip(): 
             correct_letter = answer[0]  
             break
 
@@ -66,23 +62,29 @@ def check_answer(user_answer, question_data):
         print(f"Incorrect! The correct answer was {correct_letter}: {correct_text}")
         return False
 
-
-is_correct = check_answer(user_response, selected_question)
-
 def run_quiz(quiz_data):
     if not quiz_data:
         print("Error: No quiz data available.")
         return
     
     score = 0
-    random.shuffle(quiz_data)  
-    
+    total_questions = len(quiz_data)
+
+    random.shuffle(quiz_data)  # Shuffle questions before starting
+
     for question_data in quiz_data:  
         user_answer = ask_question(question_data)
         if check_answer(user_answer, question_data):
             score += 1
 
-    print(f"\nQuiz Complete! Your final score: {score}/{len(quiz_data)}")
+    print(f"\nQuiz Complete! Your final score: {score}/{total_questions}")
 
+# Find the latest quiz file 
+latest_quiz_file = get_latest_quiz_file()
 
-run_quiz(quiz_questions)
+if latest_quiz_file:
+    print(f"Loading quiz from: {latest_quiz_file}")
+    quiz_questions = load_quiz(latest_quiz_file)
+    run_quiz(quiz_questions)
+else:
+    print("Error: No valid quiz files found.")
