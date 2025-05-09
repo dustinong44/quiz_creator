@@ -11,7 +11,7 @@ def get_latest_quiz_file():
     if not existing_files:
         return None  # No quiz files found
     latest_file = sorted(existing_files, key=lambda x: int(x.replace(filename_prefix, "").replace(".txt", "")), reverse=True)[0]
-    return os.path.join(quiz_directory, latest_file)  # Return full path of latest quiz file
+    return os.path.join(quiz_directory, latest_file) 
 
 # load quiz data from file
 def load_quiz(filename):
