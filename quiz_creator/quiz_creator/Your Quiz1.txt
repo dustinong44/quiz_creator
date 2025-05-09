@@ -14,3 +14,27 @@ c. Bato Dela Rosa
 d. Rex Gatchalian
 Correct answer: Ferdinand Marcos Jr.
 
+Question:  What is the capital of the Philippines
+Possible Score: 1.0
+a. Manila
+b. Cebu
+c. Biringan
+d. UST
+Correct answer: Manila
+
+Question: Who is the current Vice President of the Philippines
+Possible Score: 2.0
+a. Leni Robredp
+b. Mar Roxas
+c. Aaron Coro
+d. Sarah Duterte
+Correct answer: Sarah Duterte
+
+Question: How many side does a square has?
+Possible Score: 1.0
+a. 4
+b. 5
+c. 6
+d. 2
+Correct answer: 4
+

@@ -19,22 +19,12 @@ def load_quiz(filename):
         print(f"Error: {filename} not found.")
         return []
 
-quiz_file = "Your Quiz1.txt"  
-quiz_questions = load_quiz(quiz_file)
-print(quiz_questions)  
-
 def get_random_question(quiz_data):
     if not quiz_data:
         print("No questions available.")
         return None
     return random.choice(quiz_data)
 
-
-selected_question = get_random_question(quiz_questions)
-if selected_question:
-    print(f"Question: {selected_question['question']}")
-    for answer in selected_question["answers"]:
-        print(answer)  
 
 def ask_question(question_data):
     print(f"\nQuestion: {question_data['question']}")
@@ -48,9 +38,16 @@ def ask_question(question_data):
         else:
             print("Invalid input. Please enter a, b, c, or d.")
 
+# load quiz file and select a question
+quiz_file = "Your Quiz1.txt"  
+quiz_questions = load_quiz(quiz_file)
+selected_question = get_random_question(quiz_questions)
 
-user_response = ask_question(selected_question)
-print(f"You selected: {user_response}")
+if selected_question:  
+    user_response = ask_question(selected_question)
+else:
+    print("Error: No valid question available.")
+
 
 def check_answer(user_answer, question_data):
     correct_text = question_data["correct"]
@@ -63,25 +60,29 @@ def check_answer(user_answer, question_data):
             break
 
     if user_answer == correct_letter:
-        print("✅ Correct!")
+        print("Correct!")
         return True
     else:
-        print(f"❌ Incorrect! The correct answer was {correct_letter}: {correct_text}")
+        print(f"Incorrect! The correct answer was {correct_letter}: {correct_text}")
         return False
 
 
 is_correct = check_answer(user_response, selected_question)
 
 def run_quiz(quiz_data):
+    if not quiz_data:
+        print("Error: No quiz data available.")
+        return
+    
     score = 0
-    total_questions = len(quiz_data)
-
-    for _ in range(total_questions):
-        question_data = get_random_question(quiz_data)
+    random.shuffle(quiz_data)  
+    
+    for question_data in quiz_data:  
         user_answer = ask_question(question_data)
         if check_answer(user_answer, question_data):
             score += 1
 
-    print(f"\nQuiz Complete! Your final score: {score}/{total_questions}")
+    print(f"\nQuiz Complete! Your final score: {score}/{len(quiz_data)}")
+
 
 run_quiz(quiz_questions)

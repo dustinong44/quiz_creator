@@ -18,8 +18,12 @@ def get_filename(version):
 
 while True:  # While loop for entering multiple questions
    
-   #File name for the current version
-    filename = get_filename(version_number)
+   
+    save_directory = r"C:\Users\dustin\Music\quiz_creator\answer_the_quiz\answer_the_quiz" 
+    os.makedirs(save_directory, exist_ok=True)  # Create folder if it doesn't exist
+
+    filename = os.path.join(save_directory, get_filename(version_number))
+
     print(f"Current quiz version: {version_number}")
 
     question = input("Enter your question:")
