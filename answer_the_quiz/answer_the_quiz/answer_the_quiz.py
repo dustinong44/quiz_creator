@@ -1,4 +1,4 @@
-import random
+﻿import random
 
 def load_quiz(filename):
     quiz_data = []
@@ -48,9 +48,27 @@ def ask_question(question_data):
         else:
             print("Invalid input. Please enter a, b, c, or d.")
 
-# Test user interaction
+
 user_response = ask_question(selected_question)
 print(f"You selected: {user_response}")
 
+def check_answer(user_answer, question_data):
+    correct_text = question_data["correct"]
+    correct_letter = None
 
+    
+    for answer in question_data["answers"]:
+        if correct_text in answer:
+            correct_letter = answer[0]  
+            break
+
+    if user_answer == correct_letter:
+        print("✅ Correct!")
+        return True
+    else:
+        print(f"❌ Incorrect! The correct answer was {correct_letter}: {correct_text}")
+        return False
+
+
+is_correct = check_answer(user_response, selected_question)
 
