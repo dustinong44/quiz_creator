@@ -35,3 +35,22 @@ if selected_question:
     print(f"Question: {selected_question['question']}")
     for answer in selected_question["answers"]:
         print(answer)  
+
+def ask_question(question_data):
+    print(f"\nQuestion: {question_data['question']}")
+    for answer in question_data["answers"]:
+        print(answer)
+
+    while True:
+        user_answer = input("Your answer (enter a, b, c, or d): ").strip().lower()
+        if user_answer in ["a", "b", "c", "d"]:
+            return user_answer
+        else:
+            print("Invalid input. Please enter a, b, c, or d.")
+
+# Test user interaction
+user_response = ask_question(selected_question)
+print(f"You selected: {user_response}")
+
+
+
